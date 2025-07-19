@@ -16,7 +16,7 @@ message SubscribeRequest {
 service ClipSyncService {
   rpc SubscribeClipBoardContentUpdate(SubscribeRequest)  returns (stream ClipBoardContent);
 
-  rpc sendClipBoardUpdate(ClipBoardContent) returns (google.protobuf.Empty)
+  rpc sendClipBoardUpdate(ClipBoardContent) returns (google.protobuf.Empty);
 }
 
 
