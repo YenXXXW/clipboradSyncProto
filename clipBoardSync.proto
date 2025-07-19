@@ -1,0 +1,23 @@
+syntax = "proto3"
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/YenXXXW/clipboardSync";
+
+message ClipBoardContent {
+  string text = 1;
+}
+
+message SubscribeRequest {
+  string device_id = 1;
+}
+
+
+service ClipSyncService {
+  rpc SubscribeClipBoardContentUpdate(SubscribeRequest)  returns (stream ClipBoardContent);
+
+  rpc sendClipBoardUpdate(ClipBoardContent) returns (google.protobuf.Empty)
+}
+
+
+
