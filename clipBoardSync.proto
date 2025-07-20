@@ -4,8 +4,13 @@ import "google/protobuf/empty.proto";
 
 option go_package = "github.com/YenXXXW/clipboardSync";
 
-message ClipBoardContent {
+message ClipboardContent {
   string text = 1;
+}
+
+message ClipboardUpdateRequest {
+  string room_id= 1;
+  ClipboardContent content = 2;
 }
 
 message SubscribeRequest {
@@ -16,7 +21,7 @@ message SubscribeRequest {
 service ClipSyncService {
   rpc SubscribeClipBoardContentUpdate(SubscribeRequest)  returns (stream ClipBoardContent);
 
-  rpc sendClipBoardUpdate(ClipBoardContent) returns (google.protobuf.Empty);
+  rpc sendClipBoardUpdate(ClipboardUpdateRequest)  returns (google.protobuf.Empty);
 }
 
 
