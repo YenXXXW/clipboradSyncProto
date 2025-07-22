@@ -15,6 +15,7 @@ message ClipboardUpdateRequest {
 
 message SubscribeRequest {
   string device_id = 1;
+  string room_id = 2;
 }
 
 
