@@ -23,7 +23,8 @@ message CreateRoomResponse {
 }
 
 message LeaveRoomRequest {
-  string room_id = 1;
+  string device_id = 1;
+  string room_id = 2;
 }
 
 service ClipSyncService {
