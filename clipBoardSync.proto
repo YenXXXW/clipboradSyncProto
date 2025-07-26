@@ -9,13 +9,17 @@ message ClipboardContent {
 }
 
 message ClipboardUpdateRequest {
-  string room_id = 1;
+  string device_id = 1;
   ClipboardContent content = 2;
 }
 
 message SubscribeRequest {
   string device_id = 1;
   string room_id = 2;
+}
+
+message CreateRoomRequest {
+  string device_id = 1
 }
 
 message CreateRoomResponse {
@@ -28,7 +32,7 @@ message LeaveRoomRequest {
 }
 
 service ClipSyncService {
-  rpc CreateRoom(google.protobuf.Empty) returns (CreateRoomResponse);
+  rpc CreateRoom(CreateRoomRequest) returns (CreateRoomResponse);
 
   rpc LeaveRoom(LeaveRoomRequest) returns (google.protobuf.Empty);
 
