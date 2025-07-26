@@ -19,7 +19,7 @@ message SubscribeRequest {
 }
 
 message CreateRoomRequest {
-  string device_id = 1
+  string device_id = 1;
 }
 
 message CreateRoomResponse {
