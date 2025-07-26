@@ -18,8 +18,19 @@ message SubscribeRequest {
   string room_id = 2;
 }
 
+message CreateRoomResponse {
+  string room_id = 1;
+}
+
+message LeaveRoomRequest {
+  string room_id = 1;
+}
 
 service ClipSyncService {
+  rpc CreateRoom() returns(CreateRoomResponse) 
+
+  rpc LeaveRoom(LeaveRoomRequest ) returns(google.protobuf.Empty)
+
   rpc SubscribeClipBoardContentUpdate(SubscribeRequest)  returns (stream ClipboardContent) ;
 
   rpc sendClipBoardUpdate(ClipboardUpdateRequest)  returns (google.protobuf.Empty);
