@@ -27,7 +27,7 @@ message LeaveRoomRequest {
 }
 
 service ClipSyncService {
-  rpc CreateRoom() returns (CreateRoomResponse);
+  rpc CreateRoom(google.protobuf.Empty) returns (CreateRoomResponse);
 
   rpc LeaveRoom(LeaveRoomRequest) returns (google.protobuf.Empty);
 
