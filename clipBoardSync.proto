@@ -8,7 +8,7 @@ message ClipboardContent {
   string text = 1;
 }
 
-message ClipboardUpdateRequest {
+message ClipboardUpdate {
   string device_id = 1;
   ClipboardContent content = 2;
 }
@@ -36,9 +36,9 @@ service ClipSyncService {
 
   rpc LeaveRoom(LeaveRoomRequest) returns (google.protobuf.Empty);
 
-  rpc SubscribeClipboardContentUpdate(SubscribeRequest)  returns (stream ClipboardContent);
+  rpc SubscribeClipboardContentUpdate(SubscribeRequest)  returns (stream ClipboardUpdate);
 
-  rpc sendClipboardUpdate(ClipboardUpdateRequest)  returns (google.protobuf.Empty);
+  rpc sendClipboardUpdate(ClipboardUpdate)  returns (google.protobuf.Empty);
 }
 
 
