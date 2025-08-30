@@ -26,20 +26,31 @@ message CreateRoomResponse {
   string room_id = 1;
 }
 
+message Validate {
+  bool success = 1;
+  string message = 2;
+}
+
+message ValidateJoin {
+  Validate validate_room = 1;
+  Validate check_client = 2;
+}
+
 message LeaveRoomRequest {
   string device_id = 1;
   string room_id = 2;
 }
 
-service ClipSyncService {
-  rpc CreateRoom(CreateRoomRequest) returns (CreateRoomResponse);
-
-  rpc LeaveRoom(LeaveRoomRequest) returns (google.protobuf.Empty);
-
-  rpc SubscribeClipboardContentUpdate(SubscribeRequest)  returns (stream ClipboardUpdate);
-
-  rpc sendClipboardUpdate(ClipboardUpdate)  returns (google.protobuf.Empty);
+message UpdateEvent {
+  oneof event {
+    ClipboardUpdate clipboard_update = 1;
+    ValidateJoin validate_join = 2;
+  }
 }
 
-
-
+service ClipSyncService {
+  rpc CreateRoom(CreateRoomRequest) returns (CreateRoomResponse);
+  rpc LeaveRoom(LeaveRoomRequest) returns (google.protobuf.Empty);
+  rpc SubscribeClipboardContentUpdate(SubscribeRequest) returns (stream UpdateEvent);
+  rpc SendClipboardUpdate(ClipboardUpdate) returns (google.protobuf.Empty);
+}
